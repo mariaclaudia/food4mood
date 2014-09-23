@@ -29,27 +29,70 @@ public class Profile {
      */
     private String mainEmail;
 
+   private String age;
+    private String city;
+    private String country;
+    private String gender;
+
+    
     /**
      * Keys of the conferences that this user registers to attend.
      */
     private List<String> conferenceKeysToAttend = new ArrayList<>(0);
+
+    public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public String getAge() {
+		return age;
+	}
+
+	public void setAge(String age) {
+		this.age = age;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public void setCity(String city) {
+		this.city = city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
+
+	public void setCountry(String country) {
+		this.country = country;
+	}
 
     /**
      * Just making the default constructor private.
      */
     private Profile() {}
 
+   
     /**
      * Public constructor for Profile.
      * @param userId The datastore key.
      * @param displayName Any string user wants us to display him/her on this system.
      * @param mainEmail User's main e-mail address.
      */
-    public Profile(String userId, String displayName, String mainEmail) {
-        this.userId = userId;
+    public Profile(String userId, String displayName, String mainEmail, String sex, String age, String city, String country) {
+        
+    	this.userId = userId;
         this.displayName = displayName;
         this.mainEmail = mainEmail;
-
+        this.age=age;
+        this.city=city;
+        this.country=country;
+        		
     }
 
     /**
@@ -76,26 +119,39 @@ public class Profile {
         return mainEmail;
     }
 
-    /**
-     * Getter for conferenceIdsToAttend.
-     * @return an immutable copy of conferenceIdsToAttend.
-     */
-    public List<String> getConferenceKeysToAttend() {
-        return ImmutableList.copyOf(conferenceKeysToAttend);
-    }
 
     /**
      * Update the Profile with the given displayName and teeShirtSize
      * @param displayName
      * @param teeShirtSize
      */
-    public void update(String displayName) {
+    public void update(String displayName, String age, String country, String city, String sex) {
         if (displayName != null) {
             this.displayName = displayName;
         }
-//        if (teeShirtSize != null) {
-//            this.teeShirtSize = teeShirtSize;
-//        }
+        if (age != null) {
+            this.age = age;
+        }
+        
+        if (country != null) {
+            this.country = country;
+        }
+        
+        if (city != null) {
+            this.city = city;
+        }
+        
+        if (sex != null) {
+            this.city = sex;
+        }
+    }
+
+    /**
+     * Getter for conferenceIdsToAttend.
+     * @return an immutable copy of conferenceIdsToAttend.
+     */
+    public List<String> getConferenceKeysToAttend() {
+    	return ImmutableList.copyOf(conferenceKeysToAttend);
     }
 
     /**

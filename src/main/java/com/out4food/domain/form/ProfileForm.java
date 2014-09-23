@@ -4,11 +4,30 @@ package com.out4food.domain.form;
  * Pojo representing a profile form on the client side.
  */
 public class ProfileForm {
-    /**
-     * Any string user wants us to display him/her on this system.
-     */
+    
     private String displayName;
+    
+    private String age;
+    private String sex;
+    private String city;
+    private String country;
 
+    
+    public String getAge() {
+		return age;
+	}
+
+	public String getSex() {
+		return sex;
+	}
+
+	public String getCity() {
+		return city;
+	}
+
+	public String getCountry() {
+		return country;
+	}
    
 
     private ProfileForm () {}
@@ -26,10 +45,8 @@ public class ProfileForm {
         return displayName;
     }
 
-   
-
     /**
-     * Enum representing T shirt size.
+     * Enum representing T shirt size. --> farlo per SEX
      */
     public static enum TeeShirtSize {
         NOT_SPECIFIED,

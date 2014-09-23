@@ -60,13 +60,11 @@ import com.out4food.Constants;
 	    private static String extractDefaultDisplayNameFromEmail(String email) {
 	        return email == null ? null : email.substring(0, email.indexOf("@"));
 	    }
-	
-
-	   
+	 
 	 
 	    /**
-	     * Returns a Profile object associated with the given user object. The cloud endpoints system
-	     * automatically inject the User object.
+	     * Returns a Profile object associated with the given user object. 
+	     * The cloud endpoints system automatically inject the User object.
 	     *
 	     * @param user A User object injected by the cloud endpoints.
 	     * @return Profile object.
@@ -94,7 +92,12 @@ import com.out4food.Constants;
 	        if (user == null) {
 	            throw new UnauthorizedException("Authorization required");
 	        }
+	        
 	        String displayName = profileForm.getDisplayName();
+	        String sex= profileForm.getSex();
+	        String city= profileForm.getCity();
+	        String age= profileForm.getAge();
+	        String country= profileForm.getCountry();
 	        
 	        Profile profile = ofy().load().key(Key.create(Profile.class, getUserId(user))).now();
 	        if (profile == null) {
@@ -103,9 +106,9 @@ import com.out4food.Constants;
 	                displayName = extractDefaultDisplayNameFromEmail(user.getEmail());
 	            }
 	           
-	            profile = new Profile(getUserId(user), displayName, user.getEmail());
+	            profile = new Profile(getUserId(user), displayName, user.getEmail(), sex,city,age,country);
 	        } else {
-	            profile.update(displayName);
+	            profile.update(displayName,sex,city,age,country);
 	        }
 	        ofy().save().entity(profile).now();
 	        return profile;
